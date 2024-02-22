@@ -14,9 +14,18 @@ namespace ly {
             void set_texture(const std::string& texture_path);
             void render(sf::RenderWindow& window);
             void tick_internal(float delta_time);
+            void set_actor_location(const sf::Vector2f& new_location);
+            void set_actor_rotation(float new_rotation);
+            void set_actor_location_offset(const sf::Vector2f& offset);
+            void set_actor_rotation_offset(float offset);
+            sf::Vector2f get_actor_location() const;
+            float get_actor_rotation() const;
+            sf::Vector2f get_actor_forward_direction() const;
+            sf::Vector2f get_actor_right_direction() const;
             virtual void begin_play();
             virtual void tick(float delta_time);
         private:
+            void center_pivot();
             World* owning_world;
             bool began_play;
 

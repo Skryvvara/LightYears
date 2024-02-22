@@ -1,7 +1,7 @@
 #include "framework/actor.h"
 #include "framework/asset_manager.h"
 #include "framework/core.h"
-
+#include "framework/math_util.h"
 namespace ly {
     Actor::Actor(World* world, const std::string& texture_path)
         : owning_world{world}, 
@@ -27,6 +27,7 @@ namespace ly {
         int texture_height = texture->getSize().y;
         sprite.setTextureRect(sf::IntRect{sf::Vector2i{}, 
             sf::Vector2i{texture_width, texture_height}});
+        center_pivot();
     }
 
     void Actor::begin_play_internal() {
@@ -54,5 +55,43 @@ namespace ly {
         if (is_pending_destroy()) return;
         
         window.draw(sprite);
+    }
+
+    void Actor::set_actor_location(const sf::Vector2f& new_location) {
+        sprite.setPosition(new_location);
+    }
+
+    void Actor::set_actor_location_offset(const sf::Vector2f& offset) {
+        set_actor_location(get_actor_location() + offset);
+    }
+
+    void Actor::set_actor_rotation(float new_rotation) {
+        sprite.setRotation(new_rotation);
+    }
+
+    void Actor::set_actor_rotation_offset(float offset) {
+        set_actor_rotation(get_actor_rotation() + offset);
+    }
+
+    sf::Vector2f Actor::get_actor_location() const
+    {
+        return sprite.getPosition();
+    }
+
+    float Actor::get_actor_rotation() const {
+        return sprite.getRotation();
+    }
+
+    sf::Vector2f Actor::get_actor_forward_direction() const {
+        return rotation_to_vector(get_actor_rotation());
+    }
+
+    sf::Vector2f Actor::get_actor_right_direction() const {
+        return rotation_to_vector(get_actor_rotation() + 90.0f);
+    }
+
+    void Actor::center_pivot() {
+        sf::FloatRect bounds = sprite.getGlobalBounds();
+        sprite.setOrigin(bounds.width/2.0f, bounds.height/2.0f);
     }
 }

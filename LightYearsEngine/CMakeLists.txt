@@ -17,6 +17,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/asset_manager.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/asset_manager.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/math_util.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/math_util.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/entrypoint.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/entrypoint.cpp
 )
