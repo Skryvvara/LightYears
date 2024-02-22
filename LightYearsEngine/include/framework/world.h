@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 namespace ly {
     class Actor;
@@ -11,6 +12,7 @@ namespace ly {
 
             void begin_play_internal();
             void tick_internal(float delta_time);
+            void render(sf::RenderWindow& window);
 
             virtual ~World();
 

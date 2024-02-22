@@ -36,12 +36,18 @@ namespace ly {
             if (iter->get()->is_pending_destroy()) {
                 iter = actors.erase(iter);
             } else {
-                iter->get()->tick(delta_time);
+                iter->get()->tick_internal(delta_time);
                 ++iter;
             }
         }
 
         tick(delta_time);
+    }
+
+    void World::render(sf::RenderWindow& window) {
+        for (auto actor : actors) {
+            actor->render(window);
+        }
     }
 
     void World::tick(float delta_time) {

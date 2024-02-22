@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include "framework/application.h"
+#include "framework/asset_manager.h"
 #include "framework/core.h"
 #include "framework/world.h"
 
 namespace ly {
-    Application::Application() 
-        : render_window{sf::VideoMode(800, 600), "LightYearsGame"},
+    Application::Application(unsigned int width, unsigned int height, const std::string& title, sf::Uint32 style) 
+        : render_window{sf::VideoMode(width, height), title, style},
         tick_clock{},
         target_framerate{60.0f},
-        current_world{nullptr}
+        current_world{nullptr},
+        clean_clock{},
+        clean_interval{2.0f}
     {
 
     }
@@ -17,6 +20,11 @@ namespace ly {
         tick(delta_time);
         if (current_world) {
             current_world->tick_internal(delta_time);
+        }
+
+        if (clean_clock.getElapsedTime().asSeconds() >= clean_interval) {
+            clean_clock.restart();
+            AssetManager::get().clean_cycle();
         }
     }
 
@@ -33,11 +41,9 @@ namespace ly {
     }
 
     void Application::render() {
-        sf::CircleShape circle{ 50 };
-        circle.setFillColor(sf::Color::Yellow);
-        circle.setOrigin(50, 50);
-        circle.setPosition(render_window.getSize().x/2.0f, render_window.getSize().y/2.0f);
-        render_window.draw(circle);
+        if (current_world) {
+            current_world->render(render_window);
+        }
     }
 
     void Application::run() {

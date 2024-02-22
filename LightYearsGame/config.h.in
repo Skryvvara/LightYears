@@ -1,0 +1,12 @@
+#pragma once
+#include <string>
+
+#define NDEBUG 1
+
+std::string get_resource_dir() {
+    #ifdef NDEBUG
+        return "@RESOURCE_DIR_NAME@/";
+    #else
+        return "@RESOURCE_SRC_DIR@/";
+    #endif
+}
