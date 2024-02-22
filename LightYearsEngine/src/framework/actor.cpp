@@ -61,7 +61,7 @@ namespace ly {
         sprite.setPosition(new_location);
     }
 
-    void Actor::set_actor_location_offset(const sf::Vector2f& offset) {
+    void Actor::add_actor_location_offset(const sf::Vector2f& offset) {
         set_actor_location(get_actor_location() + offset);
     }
 
@@ -69,7 +69,7 @@ namespace ly {
         sprite.setRotation(new_rotation);
     }
 
-    void Actor::set_actor_rotation_offset(float offset) {
+    void Actor::add_actor_rotation_offset(float offset) {
         set_actor_rotation(get_actor_rotation() + offset);
     }
 

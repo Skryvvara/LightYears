@@ -16,8 +16,8 @@ namespace ly {
             void tick_internal(float delta_time);
             void set_actor_location(const sf::Vector2f& new_location);
             void set_actor_rotation(float new_rotation);
-            void set_actor_location_offset(const sf::Vector2f& offset);
-            void set_actor_rotation_offset(float offset);
+            void add_actor_location_offset(const sf::Vector2f& offset);
+            void add_actor_rotation_offset(float offset);
             sf::Vector2f get_actor_location() const;
             float get_actor_rotation() const;
             sf::Vector2f get_actor_forward_direction() const;

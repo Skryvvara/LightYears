@@ -4,7 +4,7 @@
 namespace ly {
     std::unique_ptr<AssetManager> AssetManager::instance{nullptr};
 
-    AssetManager::AssetManager() {
+    AssetManager::AssetManager() : asset_root_dir{} {
 
     }
 
@@ -32,11 +32,15 @@ namespace ly {
         }
 
         std::shared_ptr<sf::Texture> new_texture{new sf::Texture};
-        if (new_texture->loadFromFile(path)) {
+        if (new_texture->loadFromFile(asset_root_dir + path)) {
             loaded_texture_map.insert({path, new_texture});
             return new_texture;
         }
 
         return std::shared_ptr<sf::Texture>{nullptr};
+    }
+
+    void AssetManager::set_asset_root_dir(const std::string& directory) {
+        asset_root_dir = directory;
     }
 }
