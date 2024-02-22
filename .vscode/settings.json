@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.nomad": "hashicorp.hcl",
+    "vector": "cpp"
+  }
+}

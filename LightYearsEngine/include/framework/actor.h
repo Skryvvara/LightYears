@@ -1,8 +1,9 @@
 #pragma once
+#include "framework/object.h"
 
 namespace ly {
     class World;
-    class Actor {
+    class Actor : public Object {
         public:
             Actor(World* world);
             virtual ~Actor();

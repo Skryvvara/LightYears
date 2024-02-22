@@ -32,8 +32,13 @@ namespace ly {
         }
         pending_actors.clear();
 
-        for (std::shared_ptr<Actor> actor : actors) {
-            actor->tick(delta_time);
+        for (auto iter = actors.begin(); iter != actors.end();) {
+            if (iter->get()->is_pending_destroy()) {
+                iter = actors.erase(iter);
+            } else {
+                iter->get()->tick(delta_time);
+                ++iter;
+            }
         }
 
         tick(delta_time);
