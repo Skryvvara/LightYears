@@ -15,6 +15,8 @@ namespace ly {
             current_world->begin_play_internal();
             return new_world;
         }
+
+        sf::Vector2u get_window_size() const { return render_window.getSize(); }
     private:
         void tick_internal(float delta_time);
         void render_internal();

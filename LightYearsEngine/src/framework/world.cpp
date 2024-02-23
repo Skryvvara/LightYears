@@ -1,3 +1,4 @@
+#include "framework/application.h"
 #include "framework/world.h"
 #include "framework/actor.h"
 #include "framework/core.h"
@@ -52,5 +53,9 @@ namespace ly {
 
     void World::tick(float delta_time) {
         LOG("Tick at frame rate %f", 1.0f/delta_time);
+    }
+
+    sf::Vector2u World::get_window_size() const {
+        return owning_app->get_window_size();
     }
 }

@@ -41,12 +41,31 @@ namespace ly {
             move_input.x = 1.0f;
         }
 
+        clamp_input_on_edge();
         normalize_input();
     }
 
     void PlayerSpaceship::normalize_input() {
         normalize_vector(move_input);
-        LOG("move input is now: %f, %f", move_input.x, move_input.y);
+    }
+
+    void PlayerSpaceship::clamp_input_on_edge() {
+        sf::Vector2f actor_location = get_actor_location();
+        if (actor_location.x < 0 && move_input.x < 0) {
+            move_input.x = 0.0f;
+        }
+
+        if (actor_location.x > get_window_size().x && move_input.x > 0) {
+            move_input.x = 0.0f;
+        }
+
+        if (actor_location.y < 0 && move_input.y < 0) {
+            move_input.y = 0.0f;
+        }
+
+        if (actor_location.y > get_window_size().y && move_input.y > 0) {
+            move_input.y = 0.0f;
+        }
     }
 
     void PlayerSpaceship::consume_input(float delta_time) {

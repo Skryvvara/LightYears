@@ -22,6 +22,8 @@ namespace ly {
                 pending_actors.push_back(new_actor);
                 return new_actor;
             }
+
+            sf::Vector2u get_window_size() const;
         private:
             void begin_play();
             void tick(float delta_time);

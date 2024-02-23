@@ -2,6 +2,7 @@
 #include "framework/asset_manager.h"
 #include "framework/core.h"
 #include "framework/math_util.h"
+#include "framework/world.h"
 namespace ly {
     Actor::Actor(World* world, const std::string& texture_path)
         : owning_world{world}, 
@@ -93,5 +94,9 @@ namespace ly {
     void Actor::center_pivot() {
         sf::FloatRect bounds = sprite.getGlobalBounds();
         sprite.setOrigin(bounds.width/2.0f, bounds.height/2.0f);
+    }
+
+    sf::Vector2u Actor::get_window_size() const {
+        return owning_world->get_window_size();
     }
 }

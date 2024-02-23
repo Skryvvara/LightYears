@@ -24,6 +24,7 @@ namespace ly {
             sf::Vector2f get_actor_right_direction() const;
             virtual void begin_play();
             virtual void tick(float delta_time);
+            sf::Vector2u get_window_size() const;
         private:
             void center_pivot();
             World* owning_world;
