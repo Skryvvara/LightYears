@@ -14,6 +14,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/object.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/object.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/physics.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/physics.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/asset_manager.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/asset_manager.cpp
 
@@ -28,10 +31,38 @@ target_include_directories(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+include(FetchContent)
+
+set(SFML_LIB_NAME SFML)
+set(SFML_LIB_REPO https://github.com/SFML/SFML)
+
+FetchContent_Declare(
+  ${SFML_LIB_NAME}
+  GIT_REPOSITORY ${SFML_LIB_REPO}
+  GIT_TAG 2.5.1
+  GIT_SHALLOW FALSE
+)
+
+FetchContent_MakeAvailable(${SFML_LIB_NAME})
+
 target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-graphics)
 target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-window)
 target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-system)
 target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-audio)
+
+set(BOX2D_LIB_NAME Box2D)
+set(BOX2D_LIB_REPO https://github.com/erincatto/box2d)
+
+FetchContent_Declare(
+  ${BOX2D_LIB_NAME}
+  GIT_REPOSITORY ${BOX2D_LIB_REPO}
+  GIT_TAG v2.4.1
+  GIT_SHALLOW FALSE
+)
+
+FetchContent_MakeAvailable(${BOX2D_LIB_NAME})
+
+target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC box2d)
 
 #function(CopyLibToTarget LIB_NAME TARGET_NAME)
 #  add_custom_target(

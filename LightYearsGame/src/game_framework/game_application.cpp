@@ -17,7 +17,10 @@ namespace ly {
         test_player = new_world.lock()->spawn_actor<PlayerSpaceship>();
         test_player.lock()->set_actor_location(sf::Vector2f(400, 300));
         test_player.lock()->set_actor_rotation(-90.0f);
-        test_player.lock()->set_velocity(sf::Vector2f(0.0f, -200.0f));
+
+        std::weak_ptr<Spaceship> test_spaceship = new_world.lock()->spawn_actor<Spaceship>();
+        test_spaceship.lock()->set_texture("SpaceShooterRedux/PNG/playerShip1_red.png");
+        test_spaceship.lock()->set_actor_location(sf::Vector2f(400, 100));
     }
 
     void GameApplication::tick(float delta_time) {

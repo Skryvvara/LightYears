@@ -3,12 +3,16 @@
 #include <memory>
 #include "framework/object.h"
 
+class b2Body;
+
 namespace ly {
     class World;
     class Actor : public Object {
         public:
             Actor(World* world, const std::string& texture_path = "");
             virtual ~Actor();
+
+            virtual void destroy() override;
 
             void begin_play_internal();
             void set_texture(const std::string& texture_path);
@@ -32,12 +36,21 @@ namespace ly {
             World* get_world() const { return owning_world; };
 
             bool is_out_of_window_bounds() const;
+            void set_enable_physics(bool enable);
+
+            virtual void on_begin_overlap(Actor* target);
+            virtual void on_end_overlap(Actor* target);
         private:
             void center_pivot();
+            void initialize_physics();
+            void disable_physics();
+            void update_physics_body_transform();
             World* owning_world;
             bool began_play;
 
             sf::Sprite sprite;
             std::shared_ptr<sf::Texture> texture;
+            b2Body* physics_body;
+            bool physics_enabled;
     };
 }

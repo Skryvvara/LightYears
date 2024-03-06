@@ -6,7 +6,7 @@ namespace ly {
             Object();
             virtual ~Object();
 
-            void destroy();
+            virtual void destroy();
             bool is_pending_destroy() const { return _is_pending_destroy; }
         private:
             bool _is_pending_destroy;

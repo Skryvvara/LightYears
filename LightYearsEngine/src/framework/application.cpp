@@ -2,6 +2,7 @@
 #include "framework/application.h"
 #include "framework/asset_manager.h"
 #include "framework/core.h"
+#include "framework/physics.h"
 #include "framework/world.h"
 
 namespace ly {
@@ -21,6 +22,8 @@ namespace ly {
         if (current_world) {
             current_world->tick_internal(delta_time);
         }
+
+        Physics::get().step(delta_time);
 
         if (clean_clock.getElapsedTime().asSeconds() >= clean_interval) {
             clean_clock.restart();

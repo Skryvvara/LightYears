@@ -8,6 +8,7 @@ namespace ly {
         void set_speed(float new_speed);
         void set_damage(float new_damage);
         virtual void tick(float delta_time) override;
+        virtual void begin_play() override;
     private:
         void move(float delta_time);
         Actor* actor_owner;

@@ -26,6 +26,12 @@ namespace ly {
         }
     }
 
+    void Bullet::begin_play() {
+        Actor::begin_play();
+
+        set_enable_physics(true);
+    }
+
     void Bullet::move(float delta_time) {
         add_actor_location_offset(get_actor_forward_direction() * speed * delta_time);
     }

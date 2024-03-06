@@ -1,20 +1,31 @@
+#include <box2d/b2_body.h>
+
 #include "framework/actor.h"
 #include "framework/asset_manager.h"
 #include "framework/core.h"
 #include "framework/math_util.h"
+#include "framework/physics.h"
 #include "framework/world.h"
+
 namespace ly {
     Actor::Actor(World* world, const std::string& texture_path)
         : owning_world{world}, 
         began_play{false},
         sprite{},
-        texture{} {
+        texture{},
+        physics_body{nullptr},
+        physics_enabled{false} {
             
         set_texture(texture_path);
     }
 
     Actor::~Actor() {
         LOG("Actor destroyed");
+    }
+
+    void Actor::destroy() {
+        disable_physics();
+        Object::destroy();
     }
 
     void Actor::set_texture(const std::string& texture_path) {
@@ -59,6 +70,7 @@ namespace ly {
 
     void Actor::set_actor_location(const sf::Vector2f& new_location) {
         sprite.setPosition(new_location);
+        update_physics_body_transform();
     }
 
     void Actor::add_actor_location_offset(const sf::Vector2f& offset) {
@@ -67,6 +79,7 @@ namespace ly {
 
     void Actor::set_actor_rotation(float new_rotation) {
         sprite.setRotation(new_rotation);
+        update_physics_body_transform();
     }
 
     void Actor::add_actor_rotation_offset(float offset) {
@@ -129,5 +142,45 @@ namespace ly {
         }
 
         return false;
+    }
+
+    void Actor::set_enable_physics(bool enable) {
+        physics_enabled = enable;
+        if (physics_enabled) {
+            initialize_physics();
+        } else {
+            disable_physics();
+        }
+    }
+
+    void Actor::initialize_physics() {
+        if (!physics_body) {
+            physics_body = Physics::get().add_listener(this);
+        }
+    }
+
+    void Actor::disable_physics() {
+        if (physics_body) {
+            Physics::get().remove_listener(physics_body);
+            physics_body = nullptr;
+        }
+    }
+
+    void Actor::update_physics_body_transform() {
+        if (physics_body) {
+            float physics_scale = Physics::get().get_physics_scale();
+            b2Vec2 location{get_actor_location().x * physics_scale, get_actor_location().y * physics_scale};
+            float rotation = degrees_to_radians(get_actor_rotation());
+
+            physics_body->SetTransform(location, rotation);
+        }
+    }
+
+    void Actor::on_begin_overlap(Actor* other) {
+        LOG("Overlap");
+    }
+
+    void Actor::on_end_overlap(Actor* other) {
+        LOG("End overlap");
     }
 }

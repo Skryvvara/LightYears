@@ -11,6 +11,12 @@ namespace ly {
         add_actor_location_offset(get_velocity() * delta_time);
     }
 
+    void Spaceship::begin_play() {
+        Actor::begin_play();
+
+        set_enable_physics(true);
+    }
+
     void Spaceship::set_velocity(sf::Vector2f new_velocity) {
         velocity = new_velocity;
     }
