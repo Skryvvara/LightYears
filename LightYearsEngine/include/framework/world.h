@@ -16,14 +16,15 @@ namespace ly {
 
             virtual ~World();
 
-            template<typename ActorType>
-            std::weak_ptr<ActorType> spawn_actor() {
-                std::shared_ptr<ActorType> new_actor{ new ActorType{this} };
+            template<typename ActorType, typename... Args>
+            std::weak_ptr<ActorType> spawn_actor(Args... args) {
+                std::shared_ptr<ActorType> new_actor{ new ActorType(this, args...) };
                 pending_actors.push_back(new_actor);
                 return new_actor;
             }
 
             sf::Vector2u get_window_size() const;
+            void clean_cycle();
         private:
             void begin_play();
             void tick(float delta_time);

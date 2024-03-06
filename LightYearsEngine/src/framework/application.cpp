@@ -25,11 +25,13 @@ namespace ly {
         if (clean_clock.getElapsedTime().asSeconds() >= clean_interval) {
             clean_clock.restart();
             AssetManager::get().clean_cycle();
+            if (current_world) {
+                current_world->clean_cycle();
+            }
         }
     }
 
     void Application::tick(float delta_time) {
-        LOG("Ticking at framerate: %f", 1.0f/delta_time);
     }
 
     void Application::render_internal() {

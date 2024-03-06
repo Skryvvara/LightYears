@@ -14,4 +14,8 @@ namespace ly {
     void Spaceship::set_velocity(sf::Vector2f new_velocity) {
         velocity = new_velocity;
     }
+
+    void Spaceship::shoot() {
+        
+    }
 }

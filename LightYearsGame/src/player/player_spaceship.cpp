@@ -9,12 +9,14 @@
 #define MOVE_DOWN S
 #define MOVE_LEFT A
 #define MOVE_RIGHT D
+#define MOVE_SHOOT Space
 
 namespace ly {
     PlayerSpaceship::PlayerSpaceship(World* world, const std::string& path)
         : Spaceship{world, path},
         move_input{},
-        speed{200} {
+        speed{200},
+        shooter{new BulletShooter{this, 0.1f}} {
 
     }
 
@@ -43,6 +45,10 @@ namespace ly {
 
         clamp_input_on_edge();
         normalize_input();
+
+        if (KEY_DOWN(MOVE_SHOOT)) {
+            shoot();
+        }
     }
 
     void PlayerSpaceship::normalize_input() {
@@ -51,19 +57,19 @@ namespace ly {
 
     void PlayerSpaceship::clamp_input_on_edge() {
         sf::Vector2f actor_location = get_actor_location();
-        if (actor_location.x < 0 && move_input.x < 0) {
+        if (actor_location.x < 0 && move_input.x == -1) {
             move_input.x = 0.0f;
         }
 
-        if (actor_location.x > get_window_size().x && move_input.x > 0) {
+        if (actor_location.x > get_window_size().x && move_input.x == 1.f) {
             move_input.x = 0.0f;
         }
 
-        if (actor_location.y < 0 && move_input.y < 0) {
+        if (actor_location.y < 0 && move_input.y == -1) {
             move_input.y = 0.0f;
         }
 
-        if (actor_location.y > get_window_size().y && move_input.y > 0) {
+        if (actor_location.y > get_window_size().y && move_input.y == 1.f) {
             move_input.y = 0.0f;
         }
     }
@@ -71,5 +77,11 @@ namespace ly {
     void PlayerSpaceship::consume_input(float delta_time) {
         set_velocity(move_input * speed);
         move_input.x = move_input.y = 0.0f;
+    }
+
+    void PlayerSpaceship::shoot() {
+        if (shooter) {
+            shooter->shoot();
+        }
     }
 }

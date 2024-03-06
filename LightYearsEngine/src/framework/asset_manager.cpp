@@ -10,7 +10,7 @@ namespace ly {
 
     AssetManager& AssetManager::get() {
         if (!instance) {
-            instance = std::move(std::unique_ptr<AssetManager>{new AssetManager});
+            instance = std::unique_ptr<AssetManager>{new AssetManager};
         }
         return *instance;
     }

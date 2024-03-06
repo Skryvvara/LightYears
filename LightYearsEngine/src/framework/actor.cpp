@@ -49,7 +49,6 @@ namespace ly {
     }
 
     void Actor::tick(float delta_time) {
-        LOG("Actor ticking");
     }
 
     void Actor::render(sf::RenderWindow& window) {
@@ -91,6 +90,10 @@ namespace ly {
         return rotation_to_vector(get_actor_rotation() + 90.0f);
     }
 
+    sf::FloatRect Actor::get_actor_global_bounds() const {
+        return sprite.getGlobalBounds();
+    }
+
     void Actor::center_pivot() {
         sf::FloatRect bounds = sprite.getGlobalBounds();
         sprite.setOrigin(bounds.width/2.0f, bounds.height/2.0f);
@@ -98,5 +101,33 @@ namespace ly {
 
     sf::Vector2u Actor::get_window_size() const {
         return owning_world->get_window_size();
+    }
+
+    bool Actor::is_out_of_window_bounds() const {
+        float window_width = get_world()->get_window_size().x;
+        float window_height = get_world()->get_window_size().y;
+
+        float width = get_actor_global_bounds().width;
+        float height = get_actor_global_bounds().height;
+
+        sf::Vector2f location = get_actor_location();
+
+        if (location.x < -width) {
+            return true;
+        }
+
+        if (location.x > window_width + width) {
+            return true;
+        }
+
+        if (location.y < -height) {
+            return true;
+        }
+
+        if (location.y > window_height + height) {
+            return true;
+        }
+
+        return false;
     }
 }

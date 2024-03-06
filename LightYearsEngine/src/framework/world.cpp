@@ -34,28 +34,33 @@ namespace ly {
         pending_actors.clear();
 
         for (auto iter = actors.begin(); iter != actors.end();) {
-            if (iter->get()->is_pending_destroy()) {
-                iter = actors.erase(iter);
-            } else {
-                iter->get()->tick_internal(delta_time);
-                ++iter;
-            }
+            iter->get()->tick_internal(delta_time);
+            ++iter; 
         }
 
         tick(delta_time);
     }
 
     void World::render(sf::RenderWindow& window) {
-        for (auto actor : actors) {
+        for (auto& actor : actors) {
             actor->render(window);
         }
     }
 
     void World::tick(float delta_time) {
-        LOG("Tick at frame rate %f", 1.0f/delta_time);
     }
 
     sf::Vector2u World::get_window_size() const {
         return owning_app->get_window_size();
+    }
+
+    void World::clean_cycle() {
+        for (auto iter = actors.begin(); iter != actors.end();) {
+            if (iter->get()->is_pending_destroy()) {
+                iter = actors.erase(iter);
+            } else {
+                ++iter;
+            }
+        }
     }
 }
