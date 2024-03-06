@@ -90,7 +90,7 @@ namespace ly {
         }
 
         if (actor_b && !actor_b->is_pending_destroy()) {
-            actor_b->on_begin_overlap(actor_b);
+            actor_b->on_begin_overlap(actor_a);
         }
     }
 
@@ -111,7 +111,7 @@ namespace ly {
         }
 
         if (actor_b && !actor_b->is_pending_destroy()) {
-            actor_b->on_end_overlap(actor_b);
+            actor_b->on_end_overlap(actor_a);
         }
     }
 }

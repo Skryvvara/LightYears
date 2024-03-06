@@ -40,6 +40,14 @@ namespace ly {
 
             virtual void on_begin_overlap(Actor* target);
             virtual void on_end_overlap(Actor* target);
+            
+            unsigned char get_team_id() const { return team_id; };
+            void set_team_id(unsigned char new_team_id);
+            static unsigned char get_neutral_team_id() { return neutral_team_id; };
+
+            bool is_target_hostile(Actor* target) const;
+
+            virtual void apply_damage(float amount);
         private:
             void center_pivot();
             void initialize_physics();
@@ -52,5 +60,8 @@ namespace ly {
             std::shared_ptr<sf::Texture> texture;
             b2Body* physics_body;
             bool physics_enabled;
+
+            unsigned char team_id;
+            const static unsigned char neutral_team_id = 255;
     };
 }

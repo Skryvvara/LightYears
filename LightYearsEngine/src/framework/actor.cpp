@@ -14,13 +14,14 @@ namespace ly {
         sprite{},
         texture{},
         physics_body{nullptr},
-        physics_enabled{false} {
+        physics_enabled{false},
+        team_id{get_neutral_team_id()} {
             
         set_texture(texture_path);
     }
 
     Actor::~Actor() {
-        LOG("Actor destroyed");
+        
     }
 
     void Actor::destroy() {
@@ -50,7 +51,7 @@ namespace ly {
     }
 
     void Actor::begin_play() {
-        LOG("Actor begin play");
+        
     }
 
     void Actor::tick_internal(float delta_time) {
@@ -177,10 +178,26 @@ namespace ly {
     }
 
     void Actor::on_begin_overlap(Actor* other) {
-        LOG("Overlap");
+
     }
 
     void Actor::on_end_overlap(Actor* other) {
-        LOG("End overlap");
+        
+    }
+
+    void Actor::set_team_id(unsigned char new_team_id) {
+        team_id = new_team_id;
+    }
+
+    bool Actor::is_target_hostile(Actor* target) const {
+        if (get_team_id() == get_neutral_team_id() || target->get_team_id() == get_neutral_team_id()) {
+            return false;
+        }
+
+        return get_team_id() != target->get_team_id();
+    }
+
+    void Actor::apply_damage(float amount) {
+        
     }
 }

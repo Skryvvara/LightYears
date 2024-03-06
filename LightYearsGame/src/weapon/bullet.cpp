@@ -7,7 +7,7 @@ namespace ly {
         actor_owner{actor_owner},
         speed{set_speed},
         damage{set_damage} {
-
+        set_team_id(actor_owner->get_team_id());
     }
 
     void Bullet::set_speed(float new_speed) {
@@ -30,6 +30,14 @@ namespace ly {
         Actor::begin_play();
 
         set_enable_physics(true);
+    }
+
+    void Bullet::on_begin_overlap(Actor* target) {
+        LOG("%d, %d, %d", is_target_hostile(target), get_team_id(), target->get_team_id());
+        if (is_target_hostile(target)) {
+            target->apply_damage(get_damage());
+            destroy();
+        }
     }
 
     void Bullet::move(float delta_time) {

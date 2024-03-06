@@ -17,7 +17,7 @@ namespace ly {
         move_input{},
         speed{200},
         shooter{new BulletShooter{this, 0.1f}} {
-
+        set_team_id(1);
     }
 
     void PlayerSpaceship::tick(float delta_time) {

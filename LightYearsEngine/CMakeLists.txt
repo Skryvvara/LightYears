@@ -5,6 +5,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/core.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/core.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/delegate.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/delegate.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/world.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/world.cpp
 

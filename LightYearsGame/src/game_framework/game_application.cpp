@@ -21,6 +21,7 @@ namespace ly {
         std::weak_ptr<Spaceship> test_spaceship = new_world.lock()->spawn_actor<Spaceship>();
         test_spaceship.lock()->set_texture("SpaceShooterRedux/PNG/playerShip1_red.png");
         test_spaceship.lock()->set_actor_location(sf::Vector2f(400, 100));
+        test_spaceship.lock()->set_team_id(2);
     }
 
     void GameApplication::tick(float delta_time) {
