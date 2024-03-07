@@ -2,6 +2,7 @@
 #include "spaceship/spaceship.h"
 #include "framework/core.h"
 #include "framework/math_util.h"
+#include "vfx/explosion.h"
 
 namespace ly {
     Spaceship::Spaceship(World* world, const std::string& texture_path)
@@ -48,7 +49,11 @@ namespace ly {
     }
 
     void Spaceship::on_death() {
+        Explosion* explosion = new Explosion();
+        explosion->spawn_explosion(get_world(), get_actor_location());
+
         destroy();
+        delete explosion;
     }
 
     void Spaceship::blink() {
