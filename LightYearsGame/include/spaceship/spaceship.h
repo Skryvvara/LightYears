@@ -16,7 +16,13 @@ namespace ly {
             virtual void on_health_changed(float amount, float health, float max_health);
             virtual void on_taken_damage(float amount, float health, float max_health);
             virtual void on_death();
+            void blink();
+            void update_blink(float delta_time);
             sf::Vector2f velocity;
             Health health;
+
+            float blink_time;
+            float blink_duration;
+            sf::Color blink_color_offset;
     };
 }

@@ -8,26 +8,23 @@ namespace ly
 	float radians_to_degrees(float radians);
 
 	template<typename T>
-	float get_vector_length(const sf::Vector2<T>& vector)
-	{
+	float get_vector_length(const sf::Vector2<T>& vector) {
 		return std::sqrt(vector.x * vector.x + vector.y * vector.y);
 	}
 
 	template<typename T>
-	sf::Vector2<T>& scale_vector(sf::Vector2<T>& vectorToScale, float amt)
-	{
-		vectorToScale.x *= amt;
-		vectorToScale.y *= amt;
-		return vectorToScale;
+	sf::Vector2<T>& scale_vector(sf::Vector2<T>& vector, float amt) {
+		vector.x *= amt;
+		vector.y *= amt;
+		return vector;
 	}
 
 	template<typename T>
-	sf::Vector2<T>& normalize_vector(sf::Vector2<T>& vector)
-	{
-		float vectorLength = get_vector_length<T>(vector);
-		if (vectorLength == 0.f) return vector;
+	sf::Vector2<T>& normalize_vector(sf::Vector2<T>& vector) {
+		float vector_length = get_vector_length<T>(vector);
+		if (vector_length == 0.f) return vector;
 
-		scale_vector(vector, 1.0/vectorLength);
+		scale_vector(vector, 1.0/vector_length);
 
 		return vector;
 	}

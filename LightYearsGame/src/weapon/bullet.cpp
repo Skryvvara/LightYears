@@ -33,7 +33,6 @@ namespace ly {
     }
 
     void Bullet::on_begin_overlap(Actor* target) {
-        LOG("%d, %d, %d", is_target_hostile(target), get_team_id(), target->get_team_id());
         if (is_target_hostile(target)) {
             target->apply_damage(get_damage());
             destroy();

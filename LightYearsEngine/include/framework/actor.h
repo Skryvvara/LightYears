@@ -33,7 +33,8 @@ namespace ly {
             virtual void begin_play();
             virtual void tick(float delta_time);
             sf::Vector2u get_window_size() const;
-            World* get_world() const { return owning_world; };
+            const World* get_world() const { return owning_world; };
+            World* get_world() { return owning_world; };
 
             bool is_out_of_window_bounds() const;
             void set_enable_physics(bool enable);
@@ -48,6 +49,9 @@ namespace ly {
             bool is_target_hostile(Actor* target) const;
 
             virtual void apply_damage(float amount);
+
+            const sf::Sprite& get_sprite() const { return sprite; };
+            sf::Sprite& get_sprite() { return sprite; };
         private:
             void center_pivot();
             void initialize_physics();
