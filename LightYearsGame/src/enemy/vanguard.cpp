@@ -1,11 +1,10 @@
-#include "framework/core.h"
 #include "enemy/vanguard.h"
 #include "weapon/bullet_shooter.h"
 
 namespace ly {
     Vanguard::Vanguard(World* owning_world, const std::string& texture_path, const sf::Vector2f& velocity)
         : EnemySpaceship{owning_world, texture_path},
-        _shooter{new BulletShooter{this}} {
+        _shooter{new BulletShooter{this, 1.0f, {50.0f, 0.0f}}} {
         set_velocity(velocity);
         set_actor_rotation(90.0f);
     }

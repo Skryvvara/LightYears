@@ -165,6 +165,7 @@ namespace ly {
     void Actor::disable_physics() {
         if (physics_body) {
             Physics::get().remove_listener(physics_body);
+            physics_body->GetUserData().pointer = reinterpret_cast<uintptr_t>(nullptr);
             physics_body = nullptr;
         }
     }

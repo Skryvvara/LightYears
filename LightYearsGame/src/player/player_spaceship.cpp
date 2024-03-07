@@ -16,7 +16,7 @@ namespace ly {
         : Spaceship{world, path},
         move_input{},
         speed{300},
-        shooter{new BulletShooter{this, 0.1f}} {
+        shooter{new BulletShooter{this, 0.1f, {50.0f, 0.0f}}} {
         set_team_id(1);
     }
 
