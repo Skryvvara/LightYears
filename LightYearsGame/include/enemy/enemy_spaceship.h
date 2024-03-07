@@ -8,7 +8,6 @@ namespace ly {
             virtual void tick(float delta_time) override;
         private:
             virtual void on_begin_overlap(Actor* target) override;
-            virtual void on_end_overlap(Actor* target) override;
 
             float _collision_damage;
     };

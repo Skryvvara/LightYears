@@ -12,7 +12,7 @@ namespace ly {
     std::unique_ptr<Physics> Physics::instance{nullptr};
     
     Physics::Physics()
-        : physics_world{b2Vec2{0, 0}},
+        : physics_world{b2Vec2{0.0f, 0.0f}},
         physics_scale{0.01f},
         velocity_iterations{8},
         position_iterations{3},

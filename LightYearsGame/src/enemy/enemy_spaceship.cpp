@@ -22,8 +22,4 @@ namespace ly {
             target->apply_damage(_collision_damage);
         }
     }
-
-    void EnemySpaceship::on_end_overlap(Actor* target) {
-
-    }
 }

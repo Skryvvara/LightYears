@@ -10,8 +10,7 @@ namespace ly {
             GameLevel1(Application* owning_application);
         private:
             virtual void begin_play() override;
-            void timer_callback();
+            virtual void init_game_stages() override;
             std::weak_ptr<PlayerSpaceship> player;
-            TimerHandle test_index;
     };
 }

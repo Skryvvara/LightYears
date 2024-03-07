@@ -1,6 +1,7 @@
 #include <box2d/b2_body.h>
 
 #include "framework/actor.h"
+#include "framework/core.h"
 #include "framework/asset_manager.h"
 #include "framework/core.h"
 #include "framework/math_util.h"
@@ -21,11 +22,12 @@ namespace ly {
     }
 
     Actor::~Actor() {
-        
+
     }
 
     void Actor::destroy() {
         disable_physics();
+        on_destory.broadcast(this);
         Object::destroy();
     }
 
@@ -177,11 +179,11 @@ namespace ly {
         }
     }
 
-    void Actor::on_begin_overlap(Actor* other) {
+    void Actor::on_begin_overlap(Actor* target) {
 
     }
 
-    void Actor::on_end_overlap(Actor* other) {
+    void Actor::on_end_overlap(Actor* target) {
         
     }
 

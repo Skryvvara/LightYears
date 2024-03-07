@@ -1,3 +1,4 @@
+#include "framework/core.h"
 #include "enemy/vanguard.h"
 #include "weapon/bullet_shooter.h"
 

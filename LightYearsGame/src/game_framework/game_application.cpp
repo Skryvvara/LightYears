@@ -9,7 +9,7 @@ ly::Application* get_application() {
 
 namespace ly {
     GameApplication::GameApplication()
-        : Application{800, 600, "Light Years", sf::Style::Titlebar | sf::Style::Close } {
+        : Application{600, 980, "Light Years", sf::Style::Titlebar | sf::Style::Close } {
         AssetManager::get().set_asset_root_dir(get_resource_dir());
         std::weak_ptr<GameLevel1> new_world = load_world<GameLevel1>();
     }

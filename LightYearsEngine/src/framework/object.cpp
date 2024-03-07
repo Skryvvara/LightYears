@@ -8,7 +8,7 @@ namespace ly {
     }
 
     Object::~Object() {
-        LOG("Object destroyed");
+        
     }
 
     void Object::destroy() {

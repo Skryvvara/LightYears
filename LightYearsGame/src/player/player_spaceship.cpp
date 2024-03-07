@@ -15,7 +15,7 @@ namespace ly {
     PlayerSpaceship::PlayerSpaceship(World* world, const std::string& path)
         : Spaceship{world, path},
         move_input{},
-        speed{200},
+        speed{300},
         shooter{new BulletShooter{this, 0.1f}} {
         set_team_id(1);
     }

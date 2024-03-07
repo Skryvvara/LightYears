@@ -8,6 +8,9 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/include/enemy/enemy_spaceship.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/enemy/enemy_spaceship.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/enemy/vanguard_stage.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/enemy/vanguard_stage.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/enemy/vanguard.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/enemy/vanguard.cpp
 
