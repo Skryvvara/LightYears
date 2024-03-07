@@ -5,6 +5,12 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/include/spaceship/spaceship.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/spaceship/spaceship.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/enemy/enemy_spaceship.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/enemy/enemy_spaceship.cpp
+
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/enemy/vanguard.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/enemy/vanguard.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/player/player_spaceship.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/player/player_spaceship.cpp
 

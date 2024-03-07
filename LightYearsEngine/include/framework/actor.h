@@ -36,7 +36,7 @@ namespace ly {
             const World* get_world() const { return owning_world; };
             World* get_world() { return owning_world; };
 
-            bool is_out_of_window_bounds() const;
+            bool is_out_of_window_bounds(float allowance = 10.0f) const;
             void set_enable_physics(bool enable);
 
             virtual void on_begin_overlap(Actor* target);

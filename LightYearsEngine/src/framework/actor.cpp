@@ -117,7 +117,7 @@ namespace ly {
         return owning_world->get_window_size();
     }
 
-    bool Actor::is_out_of_window_bounds() const {
+    bool Actor::is_out_of_window_bounds(float allowance) const {
         float window_width = get_world()->get_window_size().x;
         float window_height = get_world()->get_window_size().y;
 
@@ -126,19 +126,19 @@ namespace ly {
 
         sf::Vector2f location = get_actor_location();
 
-        if (location.x < -width) {
+        if (location.x < -width - allowance) {
             return true;
         }
 
-        if (location.x > window_width + width) {
+        if (location.x > window_width + width + allowance) {
             return true;
         }
 
-        if (location.y < -height) {
+        if (location.y < -height - allowance) {
             return true;
         }
 
-        if (location.y > window_height + height) {
+        if (location.y > window_height + height + allowance) {
             return true;
         }
 
@@ -190,6 +190,7 @@ namespace ly {
     }
 
     bool Actor::is_target_hostile(Actor* target) const {
+        if (target == nullptr) return false;
         if (get_team_id() == get_neutral_team_id() || target->get_team_id() == get_neutral_team_id()) {
             return false;
         }

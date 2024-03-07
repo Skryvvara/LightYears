@@ -2,6 +2,7 @@
 #include "framework/world.h"
 #include "framework/actor.h"
 #include "framework/asset_manager.h"
+#include "enemy/vanguard.h"
 #include "config.h"
 
 ly::Application* get_application() {
@@ -18,10 +19,8 @@ namespace ly {
         test_player.lock()->set_actor_location(sf::Vector2f(400, 300));
         test_player.lock()->set_actor_rotation(-90.0f);
 
-        std::weak_ptr<Spaceship> test_spaceship = new_world.lock()->spawn_actor<Spaceship>();
-        test_spaceship.lock()->set_texture("SpaceShooterRedux/PNG/playerShip1_red.png");
+        std::weak_ptr<Vanguard> test_spaceship = new_world.lock()->spawn_actor<Vanguard>();
         test_spaceship.lock()->set_actor_location(sf::Vector2f(400, 100));
-        test_spaceship.lock()->set_team_id(2);
     }
 
     void GameApplication::tick(float delta_time) {
