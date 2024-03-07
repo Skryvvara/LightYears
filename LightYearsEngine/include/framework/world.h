@@ -2,11 +2,12 @@
 #include <memory>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "framework/object.h"
 
 namespace ly {
     class Actor;
     class Application;
-    class World {
+    class World : public Object {
         public:
             World(Application* app);
 
@@ -26,8 +27,8 @@ namespace ly {
             sf::Vector2u get_window_size() const;
             void clean_cycle();
         private:
-            void begin_play();
-            void tick(float delta_time);
+            virtual void begin_play();
+            virtual void tick(float delta_time);
             Application* owning_app;
             bool began_play;
 

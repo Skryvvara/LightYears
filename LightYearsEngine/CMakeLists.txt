@@ -20,6 +20,9 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/physics.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/physics.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/timer_manager.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/timer_manager.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/asset_manager.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/asset_manager.cpp
 

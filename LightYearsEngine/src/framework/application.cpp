@@ -3,6 +3,7 @@
 #include "framework/asset_manager.h"
 #include "framework/core.h"
 #include "framework/physics.h"
+#include "framework/timer_manager.h"
 #include "framework/world.h"
 
 namespace ly {
@@ -22,6 +23,8 @@ namespace ly {
         if (current_world) {
             current_world->tick_internal(delta_time);
         }
+
+        TimerManager::get().tick(delta_time);
 
         Physics::get().step(delta_time);
 
