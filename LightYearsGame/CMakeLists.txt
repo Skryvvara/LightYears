@@ -26,6 +26,9 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/include/vfx/explosion.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/vfx/explosion.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/level/game_level_1.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/level/game_level_1.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/gameplay/health.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gameplay/health.cpp
 )
